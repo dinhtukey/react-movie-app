@@ -1,0 +1,24 @@
+@use "../../scss/variables" as *;
+
+.input__wrap {
+    position: relative;
+
+    input {
+        width: 100%;
+        border: 0;
+        background-color: $white;
+        padding: .5rem 0.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        color: $black;
+        font-family: $font-family;
+    }
+
+    .bx-search {
+        position: absolute;
+        right: 1rem;
+        top: 0.6rem;
+        color: $black;
+    }
+}
+

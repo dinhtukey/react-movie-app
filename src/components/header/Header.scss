@@ -1,0 +1,148 @@
+@use '../../scss/' as *;
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+
+    @include flex(center, unset);
+
+    img {
+        margin-right: 10px;
+        width: 3rem;
+
+        @include mobile {
+            width: 30px;
+            margin-right: 0;
+        }
+    }
+}
+
+.header {
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: height .9s ease, background-color .9s ease;
+
+    &.shrink {
+        height: $header-shrink-height;
+        background-color: $body-bg;
+    }
+
+    &__wrap {
+        @include flex(center, space-between);
+        height: 100%;
+    }
+    
+    &__nav {
+        @include flex(center, unset);
+
+        & > * ~ * {
+            margin-left: 2rem
+        }
+
+        li {
+            padding: 5px 0;
+            font-weight: 700;
+            position: relative;
+            font-size: 1.2rem;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                transition: width 0.5s ease;
+                height: 2px;
+                background-color: $main-color;
+            }
+    
+            &.active::after, &:hover::after {
+                width: 100%;
+            }
+        }
+
+        @include mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5rem;
+            width: 100%;
+            background-color: $body-bg;
+            padding: 0 2rem;
+            box-shadow: $box-shadow;
+
+            @include flex(center, space-between);
+
+            & > * ~ * {
+                margin-left: 0;
+            }
+        }
+
+        
+    }
+
+    &__search {
+        width: 25%;
+
+        @include mobile {
+            width: 40%;
+        }
+
+        &__dropdown {
+            width: 23%;
+            position: fixed;
+            z-index: 99;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow-y: auto;
+            max-height: 500px;
+            color: #000;
+
+            &__item {
+                padding: 0.5rem;
+                @include flex(center, flex-start);
+
+                .card {
+                    background-size: 60px;
+                    background-position: top left;
+                    padding-top: 30%;
+                    padding-left: 22%;
+                    border-radius: unset;
+                    margin-bottom: unset;
+                    margin-right: 0.5rem;
+
+                    &::before {
+                        background-color: unset;
+                    }
+                    &:hover::before {
+                        background-color: unset;
+                        opacity: unset;
+                    }
+                
+                    &:hover .btn {
+                        transform: translate(-50%,-50%) scale(1);
+                    }
+                }
+            }
+
+            .movie-grid__loadmore {
+                margin-bottom: 1rem;
+
+                .btn {
+                    color: #ff0000;
+                }
+            }
+
+            @include mobile {
+                width: 40%;
+                max-height: 300px;
+            }
+        }
+    }
+}
